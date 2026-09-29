@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guardrails — Text-to-SQL with Hallucination Detection</title><meta name="description" content="Text-to-SQL interface with guardrails, hallucination detection, threat radar and red-team suite.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css"></head><body><canvas id="bg"></canvas><main>
+<div class="top"><span class="tag mono">text-to-sql / guarded pipeline</span><button id="th" aria-label="Toggle theme">Theme</button></div>
+<h1>Guardrails</h1>
+<p class="sub">Ask a question in plain English. Every generated query is screened, grounded against the real schema, scored by a judge and only then executed.</p>
+<div class="stats"><div class="st"><b id="s0">0</b><span>queries</span></div><div class="st"><b id="s1">0</b><span>blocked</span></div><div class="st"><b id="s2">0</b><span>hallucinations</span></div><div class="st"><b id="s3">0</b><span>auto-repaired</span></div></div>
+<div class="box">
+<div class="row"><input id="q" placeholder="Ask data, or paste raw SQL to attack it" autocomplete="off"><button class="go" id="go">Run</button></div>
+<div class="chips" id="chips"></div>
+<div class="schema mono">schema: customers(id, name, country, tier, email) · orders(id, customer_id, amount, status, created_at) · products(id, name, category, price) · restricted: employees_salary</div>
+</div>
+<section class="grid2"><div class="box"><b>Threat radar</b><svg id="rad" viewBox="-110 -105 220 210" role="img" aria-label="Threat radar for the last query"></svg></div>
+<div class="box"><div class="top"><b>Audit log</b><span><button id="rt">Red-team</button> <button id="ex">Export</button></span></div><div id="log" class="mono"></div><div id="rtres" class="mono"></div></div></section>
+<div class="pipe" id="pipe" aria-live="polite"></div>
+</main>
+<script src="assets/app.js"></script></body></html>

@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:16
+    environment: {POSTGRES_PASSWORD: guard, POSTGRES_DB: shop}
+    volumes: ["./backend/init.sql:/docker-entrypoint-initdb.d/init.sql"]
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql://postgres:guard@db:5432/shop
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    ports: ["8000:8000"]
+    depends_on: [db]
